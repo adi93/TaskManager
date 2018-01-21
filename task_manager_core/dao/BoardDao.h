@@ -1,7 +1,8 @@
 #ifndef BOARD_DAO_H
 #define BOARD_DAO_H
 
-#include <QString>
+#include <vector>
+#include <memory>
 
 class QSqlDatabase;
 class Board;
@@ -17,7 +18,7 @@ public:
     void removeBoard(const int boardId) const;
     void updateBoard(Board& board) const;
 
-    QVector<Board *> boards();
+    std::unique_ptr<std::vector<std::unique_ptr<Board>>> boards() const;
 private:
     QSqlDatabase& database;
 };

@@ -1,7 +1,7 @@
 #include "Task.h"
 
 Task::Task(const QString &name, const QString &description):
-    id(0), name(name), description(description), board(NULL)
+    id(0), name(name), description(description), boardId(0)
 {
 
 }
@@ -34,4 +34,14 @@ QString Task::getDescription() const
 void Task::setDescription(const QString &value)
 {
     description = value;
+}
+
+int Task::getBoardId() const
+{
+    return boardId;
+}
+
+void Task::setBoardId(int value)
+{
+    boardId = value;
 }

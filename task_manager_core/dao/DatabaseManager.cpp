@@ -15,8 +15,11 @@ DatabaseManager::~DatabaseManager()
 }
 
 DatabaseManager::DatabaseManager(const QString &path):
-    database(new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE")))
+    database(new QSqlDatabase(QSqlDatabase::addDatabase("QSQLITE"))), boardDao(*database), taskDao(*database)
 {
     database->setDatabaseName(path);
     database->open();
+
+    boardDao.init();
+    taskDao.init();
 }

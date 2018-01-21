@@ -5,6 +5,7 @@
 
 class QSqlDatabase;
 class Task;
+class QSqlQuery;
 
 class TaskDao
 {
@@ -17,9 +18,14 @@ public:
     void removeTask(const int taskId) const;
     void updateTask(const Task& task) const;
 
+
+    void removeTasksForBoard(const int boardId) const;
     QVector<Task *> tasks() const;
+    QVector<Task *> tasksForBoard(int boardId) const;
+
 private:
     QSqlDatabase& database;
+    QVector<Task *> prepareTaskList(QSqlQuery& query) const;
 };
 
 #endif // TASK_DAO_H

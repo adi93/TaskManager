@@ -1,10 +1,11 @@
 #include "BoardDao.h"
 
-#include <QVector>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-#include <entity/Board.h>
 #include <QVariant>
+
+#include <entity/Board.h>
+#include "DatabaseManager.h"
 
 
 BoardDao::BoardDao(QSqlDatabase &database):
@@ -54,16 +55,16 @@ void BoardDao::updateBoard(Board &board) const
     query.exec();
 }
 
-QVector<Board *> BoardDao::boards()
+std::unique_ptr<std::vector<std::unique_ptr<Board>>> BoardDao::boards() const
 {
     QSqlQuery query("SELECT * FROM board", database);
     query.exec();
-    QVector<Board *> boardList;
+    std::unique_ptr<std::vector<std::unique_ptr<Board>>> boardList(new std::vector<std::unique_ptr<Board>>());
     while(query.next()) {
-        Board* board = new Board();
+        std::unique_ptr<Board> board(new Board());
         board->setId(query.value("id").toInt());
         board->setName(query.value("name").toString());
-        boardList.append(board);
+        boardList->push_back(std::move(board));
     }
     return boardList;
 }

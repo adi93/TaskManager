@@ -19,11 +19,14 @@ public:
     QString getDescription() const;
     void setDescription(const QString &value);
 
+    int getBoardId() const;
+    void setBoardId(int value);
+
 private:
     unsigned int id;
     QString name;
     QString description;
-    Board * board;
+    int boardId;
 };
 
 #endif // TASK_H

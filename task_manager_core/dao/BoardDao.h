@@ -12,7 +12,7 @@ public:
     BoardDao(QSqlDatabase& database);
     void init() const;
 
-    const Board getBoard(const QString& name = "") const;
+    const Board getBoard(const int boardId) const;
     void addBoard(Board& board) const;
     void removeBoard(const int boardId) const;
     void updateBoard(Board& board) const;

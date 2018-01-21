@@ -20,10 +20,10 @@ void BoardDao::init() const
     }
 }
 
-const Board BoardDao::getBoard(const QString &name) const
+const Board BoardDao::getBoard(const int boardId) const
 {
-    QSqlQuery query("SELECT * FROM board WHERE name = :name", database);
-    query.bindValue(":name", name);
+    QSqlQuery query("SELECT * FROM board WHERE id = :id", database);
+    query.bindValue(":id", boardId);
     query.exec();
 
     Board board;

@@ -3,9 +3,10 @@
 
 #include <QString>
 
+#include "task_manager_core_global.h"
+#include "Board.h"
 
-
-class Task
+class TASK_MANAGER_CORESHARED_EXPORT Task
 {
 public:
     explicit Task(const QString& name = "", const QString& description = "");
@@ -22,6 +23,7 @@ private:
     unsigned int id;
     QString name;
     QString description;
+    Board * board;
 };
 
 #endif // TASK_H

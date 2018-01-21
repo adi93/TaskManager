@@ -4,7 +4,7 @@
 
 #include <QString>
 
-class Board
+class TASK_MANAGER_CORESHARED_EXPORT Board
 {
 public:
     explicit Board(const QString& name = "");

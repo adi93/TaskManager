@@ -1,7 +1,7 @@
 #include "Task.h"
 
 Task::Task(const QString &name, const QString &description):
-    id(0), name(name), description(description)
+    id(0), name(name), description(description), board(NULL)
 {
 
 }

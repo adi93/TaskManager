@@ -2,7 +2,7 @@
 
 #include <QSqlDatabase>
 
-DatabaseManager DatabaseManager::instance()
+DatabaseManager& DatabaseManager::instance()
 {
     static DatabaseManager singleton;
     return singleton;

@@ -32,7 +32,8 @@ SOURCES += \
     dao/TaskDao.cpp \
     entity/Board.cpp \
     entity/Task.cpp \
-    dao/DatabaseManager.cpp
+    dao/DatabaseManager.cpp \
+    model/BoardModel.cpp
 
 HEADERS += \
         task_manager_core.h \
@@ -41,4 +42,5 @@ HEADERS += \
     dao/TaskDao.h \
     entity/Board.h \
     entity/Task.h \
-    dao/DatabaseManager.h
+    dao/DatabaseManager.h \
+    model/BoardModel.h

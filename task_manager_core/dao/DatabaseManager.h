@@ -11,7 +11,7 @@ const QString DATABASE_FILENAME = "task.db";
 class DatabaseManager
 {
 public:
-    static DatabaseManager instance();
+    static DatabaseManager& instance();
     ~DatabaseManager();
 
 protected:

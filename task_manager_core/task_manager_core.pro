@@ -27,7 +27,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-        task_manager_core.cpp \
     dao/BoardDao.cpp \
     dao/TaskDao.cpp \
     entity/Board.cpp \
@@ -37,7 +36,6 @@ SOURCES += \
     model/TaskModel.cpp
 
 HEADERS += \
-        task_manager_core.h \
         task_manager_core_global.h \
     dao/BoardDao.h \
     dao/TaskDao.h \

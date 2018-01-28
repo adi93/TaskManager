@@ -53,8 +53,6 @@ bool TaskModel::setData(const QModelIndex &index, const QVariant &map, int role)
     db.taskDao.updateTask(task);
     emit dataChanged(index, index);
     return true;
-
-
 }
 
 void TaskModel::setBoardId(int boardId)

@@ -1,11 +1,13 @@
 #ifndef TASK_DAO_H
 #define TASK_DAO_H
 
-#include<QString>
-
+#include <QString>
+#include <memory>
+#include <vector>
 class QSqlDatabase;
 class Task;
 class QSqlQuery;
+class Picture;
 
 class TaskDao
 {
@@ -20,12 +22,12 @@ public:
 
 
     void removeTasksForBoard(const int boardId) const;
-    QVector<Task *> tasks() const;
-    QVector<Task *> tasksForBoard(int boardId) const;
+    std::unique_ptr<std::vector<std::unique_ptr<Task>>> tasks() const;
+    std::unique_ptr<std::vector<std::unique_ptr<Task>>> tasksForBoard(int boardId) const;
 
 private:
     QSqlDatabase& database;
-    QVector<Task *> prepareTaskList(QSqlQuery& query) const;
+    std::unique_ptr<std::vector<std::unique_ptr<Task>>> prepareTaskList(QSqlQuery& query) const;
 };
 
 #endif // TASK_DAO_H

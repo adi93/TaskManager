@@ -6,6 +6,9 @@
 #include <QVector>
 #include <entity/Task.h>
 
+#include <memory>
+#include <vector>
+
 TaskDao::TaskDao(QSqlDatabase &database):
 	database(database)
 {
@@ -70,14 +73,14 @@ void TaskDao::removeTasksForBoard(const int boardId) const
 	query.exec();
 }
 
-QVector<Task *> TaskDao::tasks() const
+std::unique_ptr<std::vector<std::unique_ptr<Task>>> TaskDao::tasks() const
 {
 	QSqlQuery query("SELECT * FROM task", database);
 	return prepareTaskList(query);
 
 }
 
-QVector<Task *> TaskDao::tasksForBoard(int boardId) const
+std::unique_ptr<std::vector<std::unique_ptr<Task>>> TaskDao::tasksForBoard(int boardId) const
 {
 	QSqlQuery query("SELECT * FROM task WHERE boardId = :boardId", database);
 	query.bindValue(":boardId", boardId);
@@ -85,17 +88,17 @@ QVector<Task *> TaskDao::tasksForBoard(int boardId) const
 
 }
 
-QVector<Task *> TaskDao::prepareTaskList(QSqlQuery &query) const
+std::unique_ptr<std::vector<std::unique_ptr<Task>>> TaskDao::prepareTaskList(QSqlQuery &query) const
 {
-	query.exec();
-	QVector<Task *> taskList;
-	while(query.next()) {
-		Task* task = new Task();
+
+    std::unique_ptr<std::vector<std::unique_ptr<Task>>> taskList(new std::vector<std::unique_ptr<Task>>);
+    while(query.next()) {
+std::unique_ptr<Task> task(new Task());
 		task->setId(query.value("id").toInt());
 		task->setName(query.value("name").toString());
 		task->setDescription(query.value("description").toString());
 		task->setBoardId(query.value("boardId").toInt());
-		taskList.append(task);
+        taskList->push_back(std::move(task));
 	}
 	return taskList;
 }

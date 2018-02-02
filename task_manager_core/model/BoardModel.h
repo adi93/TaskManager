@@ -7,7 +7,7 @@
 #include <vector>
 
 #include <entity/Board.h>
-#include <task_manager_core.h>
+#include <task_manager_core_global.h>
 #include <dao/DatabaseManager.h>
 
 

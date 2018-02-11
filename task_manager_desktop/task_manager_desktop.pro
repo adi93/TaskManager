@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = task-manager-desktop
+TARGET = task_manager_desktop
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -25,14 +25,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        MainWindow.cpp
+        MainWindow.cpp \
+    BoardListWidget.cpp \
+    BoardWidget.cpp
 
 HEADERS += \
-        MainWindow.h
+        MainWindow.h \
+    BoardListWidget.h \
+    BoardWidget.h
 
 FORMS += \
         MainWindow.ui \
-    BoardList.ui
+    tasklist.ui \
+    BoardListWidget.ui \
+    BoardWidget.ui
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../task_manager_core/release/ -ltask_manager_core
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../task_manager_core/debug/ -ltask_manager_core

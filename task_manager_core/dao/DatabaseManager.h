@@ -22,7 +22,6 @@ private:
     DatabaseManager(const DatabaseManager& rhs);
 
     QSqlDatabase *database;
-
 public:
     const BoardDao boardDao;
     const TaskDao taskDao;
